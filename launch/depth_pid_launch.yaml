@@ -1,0 +1,37 @@
+launch:
+  - node:
+      pkg: "rosmav"
+      exec: "ros_bluerov2_interface"
+      name: "bluerov2_interface"
+      namespace: ""
+
+  - node:
+      pkg: "auvc_challenge"
+      exec: "arming_timer"
+      name: "timer"
+      namespace: ""
+      param:
+        - name: "arming_timeout"
+          value: 360.0
+
+  - node:
+      pkg: "auvc_challenge"
+      exec: "pressure2depth"
+      name: "pressure2depth"
+      namespace: ""
+      param:
+        - name: "pressure_offset"
+          value: 101325.0
+
+  - node:
+      pkg: "auvc_challenge"
+      exec: "depth_pid"
+      name: "depth_pid"
+      namespace: ""
+      param:
+        - name: "Kp"
+          value: -5.0
+        - name: "Ki"
+          value: 0.0
+        - name: "Kd"
+          value: -0.5
