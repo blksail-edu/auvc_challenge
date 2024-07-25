@@ -8,8 +8,8 @@ from mavros_msgs.msg import ManualControl, Altitude
 class DepthPIDNode(Node):
     previous_error = 0.0
     integral = 0.0
-    desired_depth = None
-    previous_depth = None
+    desired_depth: Altitude = None
+    previous_depth: Altitude = None
 
     def __init__(self):
         super().__init__("depth_pid_node")
@@ -37,7 +37,7 @@ class DepthPIDNode(Node):
         )
 
     def depth_callback(self, msg):
-        depth = msg
+        depth: Altitude = msg
         self.get_logger().debug(f"Depth: {depth}")
 
         if self.desired_depth is None:
@@ -72,7 +72,6 @@ class DepthPIDNode(Node):
 
         throttle = propotional + self.integral + derivative
         throttle = min(max(throttle, -self.max_throttle), self.max_throttle)
-        self.get_logger().info(f"Throttle: {throttle}")
 
         manual_control_msg = ManualControl()
         manual_control_msg.z = throttle
