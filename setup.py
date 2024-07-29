@@ -28,6 +28,7 @@ setup(
             "arming_timer = auvc_challenge.arming_timer:main",
             "pressure2depth = auvc_challenge.pressure2depth:main",
             "depth_pid = auvc_challenge.depth_pid:main",
+            "image_subscriber = auvc_challenge.image_subscriber:main",
         ],
     },
 )
